@@ -87,7 +87,15 @@ public class EditTitleActivity extends AppCompatActivity {
         setOnClickListeners(fabStartEdit, fabEditDone, textViewTitle, editTextTitle);
     }
 
-    private void fromEdit(FloatingActionButton fabStartEdit, FloatingActionButton fabEditDone, TextView textViewTitle, EditText editTextTitle) {
+    /***
+     * Preforms what is needed when moving from edit mode to non-edit mode.
+     * @param fabStartEdit fab for starting edit
+     * @param fabEditDone fab for marking edit done
+     * @param textViewTitle text view seen when not editing
+     * @param editTextTitle edit text for editing text
+     */
+    private void fromEdit(FloatingActionButton fabStartEdit, FloatingActionButton fabEditDone, TextView textViewTitle, EditText editTextTitle)
+    {
         fabEditDone.setVisibility(View.GONE);
         fabStartEdit.setVisibility(View.VISIBLE);
         editTextTitle.setVisibility(View.GONE);
@@ -96,6 +104,13 @@ public class EditTitleActivity extends AppCompatActivity {
         animateOutIn(fabEditDone, fabStartEdit);
     }
 
+    /***
+     * Preforms what is needed when moving non-edit mode to edit mode.
+     * @param fabStartEdit fab for starting edit
+     * @param fabEditDone fab for marking edit done
+     * @param textViewTitle text view seen when not editing
+     * @param editTextTitle edit text for editing text
+     */
     private void toEdit(FloatingActionButton fabStartEdit, FloatingActionButton fabEditDone,
                         TextView textViewTitle, EditText editTextTitle) {
         fabStartEdit.setVisibility(View.GONE);
@@ -106,6 +121,11 @@ public class EditTitleActivity extends AppCompatActivity {
         animateOutIn(fabStartEdit, fabEditDone);
     }
 
+    /***
+     * Does animation for switching between 2 FAB
+     * @param out_button the fab wanted animated out
+     * @param in_button the fab wanted animated in
+     */
     private void animateOutIn(FloatingActionButton out_button, FloatingActionButton in_button)
     {
         out_button.animate()
@@ -118,6 +138,13 @@ public class EditTitleActivity extends AppCompatActivity {
                 .start();
     }
 
+    /***
+     * Sets actions for when FAB are clicked.
+     * @param fabStartEdit fab for starting edit
+     * @param fabEditDone fab for marking edit done
+     * @param textViewTitle text view seen when not editing
+     * @param editTextTitle edit text for editing text
+     */
     private void setOnClickListeners(FloatingActionButton fabStartEdit, FloatingActionButton fabEditDone,
                                      TextView textViewTitle, EditText editTextTitle)
     {

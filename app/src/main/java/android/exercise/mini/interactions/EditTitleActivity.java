@@ -22,6 +22,7 @@ public class EditTitleActivity extends AppCompatActivity {
     // in onCreate() set `this.isEditing` to `true` once the user starts editing, set to `false` once done editing
     // in onBackPressed() check `if(this.isEditing)` to understand what to do
     private boolean isEditing = false;
+    private String prevText = "Page title here";
 
 
     @Override
@@ -100,7 +101,6 @@ public class EditTitleActivity extends AppCompatActivity {
         fabStartEdit.setVisibility(View.VISIBLE);
         editTextTitle.setVisibility(View.GONE);
         textViewTitle.setVisibility(View.VISIBLE);
-
         animateOutIn(fabEditDone, fabStartEdit);
     }
 
@@ -156,7 +156,9 @@ public class EditTitleActivity extends AppCompatActivity {
         fabEditDone.setOnClickListener(v -> {
             fromEdit(fabStartEdit, fabEditDone, textViewTitle, editTextTitle);
             String text = editTextTitle.getText().toString();
+            this.prevText = text;
             textViewTitle.setText(text);
+            editTextTitle.setText(text);
             this.isEditing = false;
             try {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -194,7 +196,8 @@ public class EditTitleActivity extends AppCompatActivity {
         {
             fromEdit(fabStartEdit, fabEditDone, textViewTitle, editTextTitle);
             this.isEditing = false;
-
+            textViewTitle.setText(prevText);
+            editTextTitle.setText(prevText);
             setOnClickListeners(fabStartEdit, fabEditDone, textViewTitle, editTextTitle);
         }
 
